@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Techfest MMXXVII — An Aetherial Renaissance — Conservation Report</title>
+  <meta name="description" content="Condition report for Object TF-MMXXVI: Techfest, IIT Bombay's 29th edition. An Aetherial Renaissance. December 22–24, 2026. Under examination." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400;1,6..72,500;1,6..72,600;1,6..72,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400;1,8..60,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            oil: '#14110d',
+            'oil-2': '#1d1811',
+            varnish: '#6b5637',
+            linen: '#ece4d3',
+            'linen-dim': '#a99a80',
+            leaf: '#b8863f',
+            circuit: '#7de0c4',
+            stamp: '#8b3a2a',
+          },
+          fontFamily: {
+            display: ['"Newsreader"', 'serif'],
+            body: ['"Source Serif 4"', 'serif'],
+            mono: ['"Space Mono"', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    /* ── Reset & Base ─────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: #14110d;
+      color: #ece4d3;
+      font-family: 'Source Serif 4', serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    ::selection { background: rgba(125,224,196,.2); color: #7de0c4; }
+
+    /* ── Mono annotation style ────────────────────────── */
+    .mono {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      font-weight: 400;
+    }
+    .mono-sm {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: .08em;
+      font-weight: 400;
+    }
+
+    /* ── Header catalog card ──────────────────────────── */
+    .catalog-card {
+      border: 1px solid rgba(169,154,128,.25);
+      padding: 12px 16px;
+      max-width: 280px;
+    }
+    .catalog-card p {
+      margin: 0;
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #a99a80;
+      line-height: 1.8;
+    }
+    .catalog-card p span {
+      color: #ece4d3;
+    }
+
+    /* ── Contents nav ─────────────────────────────────── */
+    .contents-nav a {
+      color: #a99a80;
+      text-decoration: none;
+      transition: color .3s;
+    }
+    .contents-nav a:hover { color: #ece4d3; }
+    .contents-nav a::before {
+      content: '→ ';
+      color: #6b5637;
+    }
+
+    /* ── Hero paint layer ─────────────────────────────── */
+    .paint-surface {
+      background:
+        /* Broad brushstroke sweeps — long horizontal ellipses at slight angles */
+        radial-gradient(ellipse 90% 8% at 15% 25%, rgba(29,24,17,.7), transparent),
+        radial-gradient(ellipse 80% 6% at 65% 18%, rgba(107,86,55,.12), transparent),
+        radial-gradient(ellipse 95% 10% at 45% 55%, rgba(29,24,17,.5), transparent),
+        radial-gradient(ellipse 70% 7% at 80% 72%, rgba(107,86,55,.08), transparent),
+        radial-gradient(ellipse 85% 5% at 30% 80%, rgba(29,24,17,.4), transparent),
+        radial-gradient(ellipse 60% 9% at 55% 40%, rgba(20,17,13,.6), transparent),
+        /* Fine craquelure — hairline cracks */
+        repeating-linear-gradient(47deg, transparent, transparent 3px, rgba(107,86,55,.025) 3px, rgba(107,86,55,.025) 4px),
+        repeating-linear-gradient(-33deg, transparent, transparent 5px, rgba(29,24,17,.03) 5px, rgba(29,24,17,.03) 6px),
+        repeating-linear-gradient(72deg, transparent, transparent 7px, rgba(107,86,55,.018) 7px, rgba(107,86,55,.018) 8px),
+        /* Aged varnish — warm amber overlay at low opacity */
+        radial-gradient(ellipse 120% 80% at 50% 40%, rgba(107,86,55,.06), transparent),
+        #14110d;
+    }
+
+    /* ── Circuit layer ────────────────────────────────── */
+    .circuit-layer {
+      --lamp-x: -300px;
+      --lamp-y: -300px;
+      -webkit-mask-image: radial-gradient(
+        circle 130px at var(--lamp-x) var(--lamp-y),
+        rgba(0,0,0,1) 0%,
+        rgba(0,0,0,1) 70%,
+        rgba(0,0,0,0) 100%
+      );
+      mask-image: radial-gradient(
+        circle 130px at var(--lamp-x) var(--lamp-y),
+        rgba(0,0,0,1) 0%,
+        rgba(0,0,0,1) 70%,
+        rgba(0,0,0,0) 100%
+      );
+      transition: opacity .3s;
+    }
+    .circuit-layer.revealed {
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+    /* Reduced motion: show a static strip instead of cursor tracking */
+    @media (prefers-reduced-motion: reduce) {
+      .circuit-layer {
+        -webkit-mask-image: linear-gradient(
+          90deg,
+          transparent 0%,
+          transparent 20%,
+          rgba(0,0,0,0.6) 25%,
+          rgba(0,0,0,1) 35%,
+          rgba(0,0,0,1) 65%,
+          rgba(0,0,0,0.6) 75%,
+          transparent 80%,
+          transparent 100%
+        );
+        mask-image: linear-gradient(
+          90deg,
+          transparent 0%,
+          transparent 20%,
+          rgba(0,0,0,0.6) 25%,
+          rgba(0,0,0,1) 35%,
+          rgba(0,0,0,1) 65%,
+          rgba(0,0,0,0.6) 75%,
+          transparent 80%,
+          transparent 100%
+        );
+      }
+    }
+
+    /* ── Lamp ring ────────────────────────────────────── */
+    .lamp-ring {
+      width: 262px;
+      height: 262px;
+      border: 1px solid rgba(125,224,196,.2);
+      border-radius: 50%;
+      pointer-events: none;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      left: var(--lamp-x, -300px);
+      top: var(--lamp-y, -300px);
+      z-index: 20;
+      box-shadow: 0 0 30px rgba(125,224,196,.04);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .lamp-ring { display: none; }
+    }
+
+    /* ── Condition notes ──────────────────────────────── */
+    .condition-note {
+      background: rgba(29,24,17,.8);
+      border: 1px solid rgba(169,154,128,.15);
+      padding: 20px 24px;
+      position: relative;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: .06em;
+      color: #a99a80;
+      line-height: 1.7;
+      max-width: 260px;
+    }
+    .condition-note .tape {
+      position: absolute;
+      top: -6px;
+      right: 14px;
+      width: 18px;
+      height: 28px;
+      background: rgba(236,228,211,.07);
+      transform: skewX(-2deg);
+      border-bottom: 1px solid rgba(236,228,211,.05);
+    }
+
+    /* ── Ledger table ─────────────────────────────────── */
+    .ledger-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .ledger-table tr {
+      border-bottom: 1px solid rgba(169,154,128,.12);
+    }
+    .ledger-table tr:last-child {
+      border-bottom: 1px solid rgba(169,154,128,.2);
+    }
+    .ledger-table tr:first-child {
+      border-top: 1px solid rgba(169,154,128,.2);
+    }
+    .ledger-table td {
+      padding: 14px 0;
+      vertical-align: baseline;
+    }
+    .ledger-table .label {
+      font-family: 'Source Serif 4', serif;
+      font-style: italic;
+      font-size: 15px;
+      color: #ece4d3;
+      text-align: left;
+      padding-right: 20px;
+    }
+    .ledger-table .figure {
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+      letter-spacing: .05em;
+      color: #b8863f;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    /* ── Examination panels ───────────────────────────── */
+    .exam-panel-texture {
+      height: 220px;
+      border: 1px solid rgba(169,154,128,.1);
+    }
+    .exam-panel-texture.tex-1 {
+      background:
+        radial-gradient(ellipse 80% 50% at 30% 40%, rgba(107,86,55,.2), transparent),
+        radial-gradient(ellipse 50% 70% at 70% 60%, rgba(29,24,17,.5), transparent),
+        linear-gradient(176deg, rgba(29,24,17,.3) 0%, rgba(107,86,55,.08) 50%, rgba(20,17,13,.4) 100%),
+        repeating-linear-gradient(92deg, transparent, transparent 2px, rgba(107,86,55,.02) 2px, rgba(107,86,55,.02) 3px),
+        #1d1811;
+    }
+    .exam-panel-texture.tex-2 {
+      background:
+        radial-gradient(ellipse 60% 80% at 50% 30%, rgba(184,134,63,.08), transparent),
+        radial-gradient(ellipse 90% 40% at 40% 70%, rgba(29,24,17,.6), transparent),
+        linear-gradient(183deg, rgba(107,86,55,.1) 0%, rgba(20,17,13,.5) 60%, rgba(29,24,17,.3) 100%),
+        repeating-linear-gradient(88deg, transparent, transparent 3px, rgba(184,134,63,.015) 3px, rgba(184,134,63,.015) 4px),
+        #14110d;
+    }
+    .exam-panel-texture.tex-3 {
+      background:
+        radial-gradient(ellipse 70% 60% at 60% 50%, rgba(107,86,55,.12), transparent),
+        radial-gradient(ellipse 40% 90% at 25% 60%, rgba(29,24,17,.5), transparent),
+        linear-gradient(170deg, rgba(20,17,13,.4) 0%, rgba(107,86,55,.06) 40%, rgba(29,24,17,.5) 100%),
+        repeating-linear-gradient(95deg, transparent, transparent 4px, rgba(107,86,55,.02) 4px, rgba(107,86,55,.02) 5px),
+        #1d1811;
+    }
+
+    /* ── Workshop manifest leader lines ───────────────── */
+    .workshop-leader {
+      flex: 1;
+      margin: 0 12px;
+      align-self: flex-end;
+      margin-bottom: 5px;
+      height: 1px;
+      background-image: radial-gradient(circle 0.8px, rgba(169,154,128,.3) 100%, transparent 100%);
+      background-size: 7px 1px;
+      background-repeat: repeat-x;
+      background-position: left bottom;
+      transition: background-size .35s ease;
+    }
+    .workshop-entry:hover .workshop-leader {
+      background-size: 5px 1px;
+      background-image: radial-gradient(circle 0.8px, rgba(169,154,128,.5) 100%, transparent 100%);
+    }
+
+    /* ── Closing restored panel ───────────────────────── */
+    .restored-circuit {
+      background: #14110d;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ── Stamp CTA ────────────────────────────────────── */
+    .stamp-cta {
+      display: inline-block;
+      border: 2px solid #8b3a2a;
+      color: #8b3a2a;
+      padding: 10px 28px;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transform: rotate(-2.5deg);
+      transition: background .35s, color .35s;
+      position: relative;
+    }
+    .stamp-cta::after {
+      content: '';
+      position: absolute;
+      inset: 3px;
+      border: 1px solid rgba(139,58,42,.3);
+    }
+    .stamp-cta:hover {
+      background: #8b3a2a;
+      color: #ece4d3;
+    }
+    .stamp-cta:focus-visible {
+      outline: 2px solid #7de0c4;
+      outline-offset: 4px;
+    }
+
+    /* ── Toggle button (keyboard fallback) ─────────────── */
+    .toggle-reveal-btn {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #a99a80;
+      background: rgba(29,24,17,.6);
+      border: 1px solid rgba(169,154,128,.2);
+      padding: 6px 14px;
+      cursor: pointer;
+      transition: border-color .3s, color .3s;
+    }
+    .toggle-reveal-btn:hover,
+    .toggle-reveal-btn:focus-visible {
+      border-color: rgba(125,224,196,.4);
+      color: #7de0c4;
+      outline: none;
+    }
+
+    /* ── Scroll-triggered reveal ──────────────────────── */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .7s ease-out, transform .7s ease-out;
+    }
+    .reveal-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Mobile stacked ledger ────────────────────────── */
+    @media (max-width: 640px) {
+      .ledger-table .label { font-size: 13px; }
+      .ledger-table .figure { font-size: 12px; }
+    }
+
+    /* ── No pointer fallback: auto-reveal ─────────────── */
+    @media (pointer: none), (pointer: coarse) {
+      .lamp-caption-hover { display: none !important; }
+      .lamp-caption-touch { display: block !important; }
+    }
+    @media (pointer: fine) {
+      .lamp-caption-hover { display: block !important; }
+      .lamp-caption-touch { display: none !important; }
+    }
+  </style>
+</head>
+
+<body class="bg-oil text-linen font-body">
+
+  <!-- ═══════════════════════════════════════════════════
+       HEADER — Museum Catalog Card
+       ═══════════════════════════════════════════════════ -->
+  <header class="relative px-5 md:px-10 pt-6 pb-4 flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+
+    <!-- Catalog card: top-left -->
+    <div class="catalog-card">
+      <p>Object: <span>Techfest MMXXVII</span></p>
+      <p>Medium: <span>Science & Technology Festival</span></p>
+      <p>Condition: <span>Under Examination</span></p>
+      <p>Catalogued: <span>Dec 2026</span></p>
+    </div>
+
+    <!-- Wordmark + contents: top-right -->
+    <div class="flex flex-col items-start md:items-end gap-4">
+      <a href="#" class="font-display text-xl tracking-wide" style="font-weight:600;">
+        <span class="text-linen-dim">TECH</span><span class="text-leaf">FEST</span>
+      </a>
+      <nav class="contents-nav mono flex flex-wrap gap-x-5 gap-y-1" aria-label="Page contents">
+        <a href="#examination">Examination</a>
+        <a href="#condition">Condition</a>
+        <a href="#ledger">Ledger</a>
+        <a href="#figures">Figures</a>
+        <a href="#manifest">Manifest</a>
+        <a href="#restoration">Restoration</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="mx-5 md:mx-10 h-px bg-gradient-to-r from-transparent via-linen-dim/20 to-transparent"></div>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       HERO — The Reveal Surface
+       ═══════════════════════════════════════════════════ -->
+  <section id="examination" class="relative w-full overflow-hidden" style="height: max(85vh, 500px);">
+
+    <!-- Paint layer (always visible) -->
+    <div class="paint-surface absolute inset-0 flex flex-col items-center justify-center px-6">
+      <p class="mono text-linen-dim/50 mb-6 tracking-[.2em] text-center">Techfest · IIT Bombay · MMXXVII</p>
+      <h1 class="font-display italic text-center leading-[0.95] text-linen" style="font-size: clamp(2.4rem, 7.5vw, 6.5rem); font-weight: 500; font-optical-sizing: auto;">
+        An Aetherial<br>Renaissance
+      </h1>
+      <p class="font-display italic text-linen-dim/60 text-center mt-5" style="font-size: clamp(0.9rem, 2vw, 1.25rem); font-weight: 400;">
+        Asia's largest science & technology festival, 29th edition
+      </p>
+    </div>
+
+    <!-- Circuit layer (masked by lamp) -->
+    <div id="circuit-layer" class="circuit-layer absolute inset-0 flex flex-col items-center justify-center px-6" style="z-index: 10;">
+      <!-- Circuit trace pattern via inline SVG -->
+      <svg class="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <defs>
+          <pattern id="cp" x="0" y="0" width="180" height="180" patternUnits="userSpaceOnUse">
+            <!-- Traces -->
+            <path d="M 0 36 H 72 V 108 H 126" stroke="#7de0c4" stroke-width="0.6" fill="none" opacity="0.18"/>
+            <path d="M 126 108 V 72 H 180" stroke="#7de0c4" stroke-width="0.6" fill="none" opacity="0.14"/>
+            <path d="M 54 0 V 36" stroke="#7de0c4" stroke-width="0.5" fill="none" opacity="0.12"/>
+            <path d="M 126 108 V 180" stroke="#7de0c4" stroke-width="0.5" fill="none" opacity="0.15"/>
+            <path d="M 0 144 H 36 V 108" stroke="#7de0c4" stroke-width="0.4" fill="none" opacity="0.1"/>
+            <path d="M 144 0 V 36 H 180" stroke="#7de0c4" stroke-width="0.4" fill="none" opacity="0.1"/>
+            <path d="M 72 108 H 72 V 144 H 108" stroke="#7de0c4" stroke-width="0.35" fill="none" opacity="0.08"/>
+            <path d="M 90 36 H 126 V 0" stroke="#7de0c4" stroke-width="0.35" fill="none" opacity="0.08"/>
+            <!-- Nodes -->
+            <circle cx="72" cy="36" r="2" fill="none" stroke="#7de0c4" stroke-width="0.6" opacity="0.2"/>
+            <circle cx="126" cy="108" r="2" fill="none" stroke="#7de0c4" stroke-width="0.6" opacity="0.18"/>
+            <circle cx="72" cy="108" r="1.5" fill="#7de0c4" opacity="0.12"/>
+            <circle cx="126" cy="72" r="1.2" fill="#7de0c4" opacity="0.1"/>
+            <circle cx="54" cy="36" r="1" fill="#7de0c4" opacity="0.08"/>
+            <circle cx="36" cy="144" r="1" fill="#7de0c4" opacity="0.08"/>
+            <circle cx="144" cy="36" r="1" fill="#7de0c4" opacity="0.08"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="#14110d"/>
+        <rect width="100%" height="100%" fill="url(#cp)"/>
+      </svg>
+
+      <!-- Text on circuit layer -->
+      <p class="relative mono text-circuit/40 mb-6 tracking-[.2em] text-center" style="z-index:2;">Techfest · IIT Bombay · MMXXVII</p>
+      <h1 class="relative font-display italic text-center leading-[0.95] text-circuit" style="font-size: clamp(2.4rem, 7.5vw, 6.5rem); font-weight: 500; font-optical-sizing: auto; z-index:2;">
+        An Aetherial<br>Renaissance
+      </h1>
+      <p class="relative font-display italic text-circuit/50 text-center mt-5" style="font-size: clamp(0.9rem, 2vw, 1.25rem); font-weight: 400; z-index:2;">
+        Asia's largest science & technology festival, 29th edition
+      </p>
+    </div>
+
+    <!-- Lamp ring (follows cursor) -->
+    <div id="lamp-ring" class="lamp-ring" aria-hidden="true"></div>
+
+    <!-- Bottom captions -->
+    <div class="absolute bottom-6 left-0 right-0 flex justify-center items-center gap-4 px-6" style="z-index: 20;">
+      <p class="lamp-caption-hover mono-sm text-linen-dim/40 text-center" style="display:none;">hover to examine</p>
+      <p class="lamp-caption-touch mono-sm text-linen-dim/40 text-center" style="display:none;">drag to examine</p>
+      <span class="text-linen-dim/20 mx-2">·</span>
+      <button id="toggle-reveal" class="toggle-reveal-btn" aria-label="Toggle full circuit reveal">
+        Toggle Reveal
+      </button>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       CONDITION NOTES STRIP
+       ═══════════════════════════════════════════════════ -->
+  <section id="condition" class="bg-oil-2 py-16 md:py-20 px-5 md:px-10">
+    <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-center gap-8 md:gap-12 reveal-on-scroll">
+
+      <!-- Note 1 -->
+      <div class="condition-note" style="transform: rotate(-1deg);">
+        <div class="tape"></div>
+        <p style="color:#ece4d3; margin-bottom: 4px;">29th Edition</p>
+        <p>Provenance confirmed. Continuous<br>annual exhibition since 1998.<br>No interruptions in record.</p>
+      </div>
+
+      <!-- Note 2 -->
+      <div class="condition-note" style="transform: rotate(0.5deg);">
+        <div class="tape" style="right: 20px;"></div>
+        <p style="color:#ece4d3; margin-bottom: 4px;">Dec 22 – 24, 2026</p>
+        <p>Three-day exhibition period.<br>Examination window confirmed<br>with institutional calendar.</p>
+      </div>
+
+      <!-- Note 3 -->
+      <div class="condition-note" style="transform: rotate(-0.5deg);">
+        <div class="tape" style="right: 18px; top: -5px;"></div>
+        <p style="color:#ece4d3; margin-bottom: 4px;">IITB, Powai</p>
+        <p>Current location verified.<br>Climate-controlled campus<br>environment. Lat 19.13°N.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       LEDGER STATS
+       ═══════════════════════════════════════════════════ -->
+  <section id="ledger" class="bg-oil py-16 md:py-24 px-5 md:px-10">
+    <div class="max-w-lg mx-auto reveal-on-scroll">
+      <p class="mono text-linen-dim/50 mb-8 tracking-[.15em]">Valuation Ledger</p>
+
+      <table class="ledger-table">
+        <tbody>
+          <tr>
+            <td class="label">Prize Pool</td>
+            <td class="figure">₹ 1,00,00,000+</td>
+          </tr>
+          <tr>
+            <td class="label">Workshop Domains</td>
+            <td class="figure">25+</td>
+          </tr>
+          <tr>
+            <td class="label">Colleges Reached</td>
+            <td class="figure">2,500+</td>
+          </tr>
+          <tr>
+            <td class="label">Attendees</td>
+            <td class="figure">1,75,000+</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="mono-sm text-linen-dim/30 mt-6">Figures from prior editions. Subject to revision upon completion of current examination.</p>
+    </div>
+  </section>
+
+
+  <div class="mx-5 md:mx-10 h-px bg-gradient-to-r from-transparent via-varnish/15 to-transparent"></div>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       DOMAINS — Examination Panels (FIG. 1–3)
+       ═══════════════════════════════════════════════════ -->
+  <section id="figures" class="bg-oil py-16 md:py-24 px-5 md:px-10">
+    <div class="max-w-5xl mx-auto">
+      <p class="mono text-linen-dim/50 mb-12 tracking-[.15em] reveal-on-scroll">Detail Examination — Three Panels</p>
+
+      <div class="grid md:grid-cols-3 gap-10 md:gap-8">
+
+        <!-- FIG. 1 -->
+        <div class="reveal-on-scroll">
+          <img src="assets/fig1_compete.png" alt="Detail: mechanical gears and armored hands interlocked, oil on panel" class="w-full h-[220px] object-cover border border-linen-dim/10" loading="lazy" />
+          <p class="font-display italic text-base text-linen mt-4 mb-1" style="font-weight: 500;">
+            <span class="mono text-linen-dim/40 mr-2" style="font-style:normal;">FIG. 1</span> — Compete
+          </p>
+          <p class="mono-sm text-linen-dim/50 leading-relaxed">
+            Robotics trials, hackathons, case challenges. Surface abrasion consistent with sustained competitive pressure.
+          </p>
+        </div>
+
+        <!-- FIG. 2 -->
+        <div class="reveal-on-scroll">
+          <img src="assets/fig2_learn.png" alt="Detail: astrolabe and manuscripts with geometric diagrams, oil on panel" class="w-full h-[220px] object-cover border border-linen-dim/10" loading="lazy" />
+          <p class="font-display italic text-base text-linen mt-4 mb-1" style="font-weight: 500;">
+            <span class="mono text-linen-dim/40 mr-2" style="font-style:normal;">FIG. 2</span> — Learn
+          </p>
+          <p class="mono-sm text-linen-dim/50 leading-relaxed">
+            25+ workshop domains spanning quantum, bio, AI, materials. Cross-section reveals layered pedagogy under varnish.
+          </p>
+        </div>
+
+        <!-- FIG. 3 -->
+        <div class="reveal-on-scroll">
+          <img src="assets/fig3_witness.png" alt="Detail: figures gathered around luminous apparatus, oil on panel" class="w-full h-[220px] object-cover border border-linen-dim/10" loading="lazy" />
+          <p class="font-display italic text-base text-linen mt-4 mb-1" style="font-weight: 500;">
+            <span class="mono text-linen-dim/40 mr-2" style="font-style:normal;">FIG. 3</span> — Witness
+          </p>
+          <p class="mono-sm text-linen-dim/50 leading-relaxed">
+            Keynotes, exhibitions, live demos. Pigment thinning here allows substrate luminance to show through.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <div class="mx-5 md:mx-10 h-px bg-gradient-to-r from-transparent via-varnish/15 to-transparent"></div>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       WORKSHOPS — Manifest List
+       ═══════════════════════════════════════════════════ -->
+  <section id="manifest" class="bg-oil py-16 md:py-24 px-5 md:px-10">
+    <div class="max-w-3xl mx-auto">
+      <p class="mono text-linen-dim/50 mb-2 tracking-[.15em] reveal-on-scroll">Workshop Manifest</p>
+      <p class="mono-sm text-linen-dim/30 mb-10 reveal-on-scroll">Indexed by domain classification. Leader-lines denote provenance.</p>
+
+      <div class="space-y-0 reveal-on-scroll">
+
+        <div class="workshop-entry flex items-baseline py-3 border-b border-linen-dim/8">
+          <span class="font-body italic text-linen text-sm md:text-base whitespace-nowrap" style="font-weight:400;">Machine Learning & Neural Architectures</span>
+          <span class="workshop-leader"></span>
+          <span class="mono text-linen-dim/40 whitespace-nowrap">AI/ML</span>
+        </div>
+
+        <div class="workshop-entry flex items-baseline py-3 border-b border-linen-dim/8">
+          <span class="font-body italic text-linen text-sm md:text-base whitespace-nowrap" style="font-weight:400;">Autonomous Drone Systems</span>
+          <span class="workshop-leader"></span>
+          <span class="mono text-linen-dim/40 whitespace-nowrap">Robotics</span>
+        </div>
+
+        <div class="workshop-entry flex items-baseline py-3 border-b border-linen-dim/8">
+          <span class="font-body italic text-linen text-sm md:text-base whitespace-nowrap" style="font-weight:400;">Blockchain Protocol Design</span>
+          <span class="workshop-leader"></span>
+          <span class="mono text-linen-dim/40 whitespace-nowrap">FinTech</span>
+        </div>
+
+        <div class="workshop-entry flex items-baseline py-3 border-b border-linen-dim/8">
+          <span class="font-body italic text-linen text-sm md:text-base whitespace-nowrap" style="font-weight:400;">Genomic Data Pipelines</span>
+          <span class="workshop-leader"></span>
+          <span class="mono text-linen-dim/40 whitespace-nowrap">BioTech</span>
+        </div>
+
+        <div class="workshop-entry flex items-baseline py-3 border-b border-linen-dim/8">
+          <span class="font-body italic text-linen text-sm md:text-base whitespace-nowrap" style="font-weight:400;">Quantum Circuit Simulation</span>
+          <span class="workshop-leader"></span>
+          <span class="mono text-linen-dim/40 whitespace-nowrap">Computing</span>
+        </div>
+
+        <div class="workshop-entry flex items-baseline py-3 border-b border-linen-dim/8">
+          <span class="font-body italic text-linen text-sm md:text-base whitespace-nowrap" style="font-weight:400;">Edge Computing & IoT Networks</span>
+          <span class="workshop-leader"></span>
+          <span class="mono text-linen-dim/40 whitespace-nowrap">Electronics</span>
+        </div>
+
+        <div class="workshop-entry flex items-baseline py-3 border-b border-linen-dim/8">
+          <span class="font-body italic text-linen text-sm md:text-base whitespace-nowrap" style="font-weight:400;">Adversarial Cybersecurity</span>
+          <span class="workshop-leader"></span>
+          <span class="mono text-linen-dim/40 whitespace-nowrap">Security</span>
+        </div>
+
+        <div class="workshop-entry flex items-baseline py-3 border-b border-linen-dim/8">
+          <span class="font-body italic text-linen text-sm md:text-base whitespace-nowrap" style="font-weight:400;">Extended Reality Frameworks</span>
+          <span class="workshop-leader"></span>
+          <span class="mono text-linen-dim/40 whitespace-nowrap">XR</span>
+        </div>
+
+        <div class="workshop-entry flex items-baseline py-3 border-b border-linen-dim/8">
+          <span class="font-body italic text-linen text-sm md:text-base whitespace-nowrap" style="font-weight:400;">Sustainable Energy Modelling</span>
+          <span class="workshop-leader"></span>
+          <span class="mono text-linen-dim/40 whitespace-nowrap">CleanTech</span>
+        </div>
+
+        <div class="workshop-entry flex items-baseline py-3 border-b border-linen-dim/12">
+          <span class="font-body italic text-linen text-sm md:text-base whitespace-nowrap" style="font-weight:400;">Computer Vision & Perception</span>
+          <span class="workshop-leader"></span>
+          <span class="mono text-linen-dim/40 whitespace-nowrap">AI/ML</span>
+        </div>
+      </div>
+
+      <p class="mono-sm text-linen-dim/25 mt-6">Manifest continues. Full index available upon registration.</p>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       CLOSING — Restoration Complete
+       ═══════════════════════════════════════════════════ -->
+  <section id="restoration" class="py-20 md:py-32 px-5 md:px-10">
+    <div class="max-w-3xl mx-auto text-center reveal-on-scroll">
+
+      <!-- Restored circuit panel — fully revealed, static -->
+      <div class="restored-circuit mx-auto mb-12 relative" style="height: 180px; max-width: 600px; border: 1px solid rgba(125,224,196,.1);">
+        <svg class="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <rect width="100%" height="100%" fill="#14110d"/>
+          <rect width="100%" height="100%" fill="url(#cp)"/>
+        </svg>
+        <div class="absolute inset-0 flex items-center justify-center" style="z-index:2;">
+          <p class="mono text-circuit/60 tracking-[.2em]">Restoration Complete</p>
+        </div>
+      </div>
+
+      <h2 class="font-display italic text-3xl md:text-4xl text-linen leading-tight" style="font-weight: 500;">
+        The surface was always temporary
+      </h2>
+      <p class="mono text-linen-dim/40 mt-4 mb-10">What endures is the wiring underneath.</p>
+
+      <!-- Authentication stamp CTA -->
+      <a href="https://techfest.org" target="_blank" rel="noopener" class="stamp-cta">
+        Register — techfest.org
+      </a>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       FOOTER — Catalog Closing Line
+       ═══════════════════════════════════════════════════ -->
+  <footer class="px-5 md:px-10 py-6">
+    <div class="h-px bg-gradient-to-r from-transparent via-linen-dim/10 to-transparent mb-6"></div>
+    <div class="flex flex-col md:flex-row items-center justify-between gap-2">
+      <p class="mono-sm text-linen-dim/30">
+        Techfest, IIT Bombay — Condition Report TF-MMXXVII — Filed Dec 2026 — Cataloguer: Conservation Dept.
+      </p>
+      <p class="mono-sm text-linen-dim/20">
+        © 2026 Techfest. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       SCRIPTS
+       ═══════════════════════════════════════════════════ -->
+  <script>
+    (function() {
+      'use strict';
+
+      // ── Elements ──────────────────────────────────────
+      const hero      = document.getElementById('examination');
+      const circuit   = document.getElementById('circuit-layer');
+      const lampRing  = document.getElementById('lamp-ring');
+      const toggleBtn = document.getElementById('toggle-reveal');
+      let isRevealed  = false;
+      let touchTimeout = null;
+
+      // ── Reduced motion check ──────────────────────────
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // ── Update lamp position via CSS custom props ─────
+      function setLampPos(x, y) {
+        circuit.style.setProperty('--lamp-x', x + 'px');
+        circuit.style.setProperty('--lamp-y', y + 'px');
+        lampRing.style.setProperty('left', x + 'px');
+        lampRing.style.setProperty('top', y + 'px');
+      }
+
+      // ── Mouse tracking ────────────────────────────────
+      if (!prefersReducedMotion) {
+        hero.addEventListener('mousemove', function(e) {
+          if (isRevealed) return;
+          const rect = hero.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          setLampPos(x, y);
+          lampRing.style.opacity = '1';
+        });
+
+        hero.addEventListener('mouseleave', function() {
+          if (isRevealed) return;
+          setLampPos(-300, -300);
+          lampRing.style.opacity = '0';
+        });
+
+        // ── Touch tracking ────────────────────────────────
+        hero.addEventListener('touchstart', handleTouch, { passive: true });
+        hero.addEventListener('touchmove', handleTouch, { passive: true });
+        hero.addEventListener('touchend', function() {
+          if (isRevealed) return;
+          lampRing.style.opacity = '0.5';
+          // Keep the reveal visible briefly after touch ends
+          clearTimeout(touchTimeout);
+          touchTimeout = setTimeout(function() {
+            setLampPos(-300, -300);
+            lampRing.style.opacity = '0';
+          }, 2000);
+        }, { passive: true });
+      }
+
+      function handleTouch(e) {
+        if (isRevealed) return;
+        clearTimeout(touchTimeout);
+        const touch = e.touches[0];
+        const rect = hero.getBoundingClientRect();
+        const x = touch.clientX - rect.left;
+        const y = touch.clientY - rect.top;
+        setLampPos(x, y);
+        lampRing.style.opacity = '1';
+      }
+
+      // ── Toggle full reveal (keyboard / button) ────────
+      toggleBtn.addEventListener('click', function() {
+        isRevealed = !isRevealed;
+        if (isRevealed) {
+          circuit.classList.add('revealed');
+          lampRing.style.opacity = '0';
+          toggleBtn.textContent = 'Hide Reveal';
+        } else {
+          circuit.classList.remove('revealed');
+          setLampPos(-300, -300);
+          toggleBtn.textContent = 'Toggle Reveal';
+        }
+      });
+
+      // ── Keyboard shortcut: press 'r' to toggle ────────
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'r' && !e.ctrlKey && !e.metaKey && !e.altKey) {
+          const tag = document.activeElement.tagName;
+          if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+          toggleBtn.click();
+        }
+      });
+
+
+      // ── Scroll-triggered reveals ──────────────────────
+      const revealEls = document.querySelectorAll('.reveal-on-scroll');
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealEls.forEach(function(el) { observer.observe(el); });
+
+    })();
+  </script>
+
+</body>
+</html>
